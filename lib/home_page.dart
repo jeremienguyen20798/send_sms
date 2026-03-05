@@ -6,9 +6,10 @@ import 'package:floating/floating.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
-import 'package:send_sms/shared/widget/call_log_list.dart';
-import 'package:send_sms/constants/app_constants.dart';
-import 'package:send_sms/shared/widget/pip_call_log_list.dart';
+import 'package:send_sms/helper/local_helper.dart';
+import 'package:send_sms/shared/widgets/call_log_list.dart';
+import 'package:send_sms/shared/widgets/pip_call_log_list.dart';
+import 'package:send_sms/utils/app_utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,7 +42,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Lịch sử cuộc gọi'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.edit_note)),
+          IconButton(
+            onPressed: () async {
+              final result = await AppUtils.showMessageTemplateDialog(context);
+              _saveMessageTemplate(result);
+            },
+            icon: Icon(Icons.edit_note),
+          ),
         ],
       ),
       body: PiPSwitcher(
@@ -77,7 +84,7 @@ class _HomePageState extends State<HomePage> {
 
   void _callStateListen() {
     Stream<PhoneState> phoneStateStream = PhoneState.stream;
-    phoneStateStream.listen((snapshot) {
+    phoneStateStream.listen((snapshot) async {
       final phoneStatus = snapshot.status;
       if (phoneStatus == PhoneStateStatus.CALL_ENDED) {
         final phoneNumber = snapshot.number;
@@ -86,15 +93,18 @@ class _HomePageState extends State<HomePage> {
             0,
             CallLogEntry(number: phoneNumber, callType: CallType.outgoing),
           );
-          telephony.sendSms(
-            to: phoneNumber,
-            message: message,
-            isMultipart: true,
-            statusListener: (status) {
-              debugPrint('SMS status: $status');
-            },
-          );
-          setState(() {});
+          final message = await LocalHelper.getMessageTemplate();
+          if (message.isNotEmpty) {
+            telephony.sendSms(
+              to: phoneNumber,
+              message: message,
+              isMultipart: true,
+              statusListener: (status) {
+                debugPrint('SMS status: $status');
+              },
+            );
+            setState(() {});
+          }
         }
       }
     });
@@ -133,5 +143,11 @@ class _HomePageState extends State<HomePage> {
 
   void _autoEnablePip() {
     enablePip(context, autoEnable: true);
+  }
+
+  void _saveMessageTemplate(String? value) {
+    if (value != null) {
+      LocalHelper.saveMessageTemplate(value);
+    }
   }
 }
