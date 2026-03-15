@@ -4,7 +4,7 @@ import 'package:another_telephony/telephony.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:send_sms/constants/app_constants.dart';
-import 'package:send_sms/home_page.dart';
+import 'package:send_sms/featres/home/view/home_page.dart';
 
 @pragma('vm:entry-point')
 void backgroundMessageHandler(SmsMessage message) {
