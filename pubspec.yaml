@@ -17,12 +17,13 @@ dependencies:
   call_log: ^6.0.1
   another_telephony: ^0.4.1
   screenshot_callback: ^3.0.1
-  flutter_contacts: ^1.1.9+2
+  # flutter_contacts: ^1.1.9+2
   flutter_gemini: ^3.0.0
   phone_state: ^3.0.1
   floating: ^6.0.0
   shared_preferences: ^2.5.4
-  path_provider: ^2.1.5
+  photo_manager: ^3.9.0
+  home_widget: ^0.9.0
 
 dev_dependencies:
   flutter_test:
