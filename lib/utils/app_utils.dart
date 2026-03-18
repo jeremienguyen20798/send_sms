@@ -12,4 +12,8 @@ class AppUtils {
     );
     return message;
   }
+
+  static void showWarningDialog(BuildContext context) {
+
+  }
 }

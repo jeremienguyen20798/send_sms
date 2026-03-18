@@ -91,10 +91,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             if (candidates != null) {
               final content = candidates.content;
               TextPart? textPart = content?.parts?.first as TextPart?;
-              if (textPart != null) {
+              final messageTemplate = await LocalHelper.getMessageTemplate();
+              if (textPart != null && messageTemplate.isNotEmpty) {
                 telephony.sendSms(
                   to: phoneNumber,
-                  message: textPart.text,
+                  message: '${textPart.text}\n$messageTemplate',
                   isMultipart: true,
                   statusListener: (status) {
                     debugPrint('SMS status: $status');

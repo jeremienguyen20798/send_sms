@@ -1,8 +1,6 @@
-import 'package:another_telephony/telephony.dart';
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:send_sms/extensions/call_type_extension.dart';
-import 'package:send_sms/helper/local_helper.dart';
 
 class CallLogList extends StatelessWidget {
   final List<CallLogEntry> callLogs;
@@ -27,23 +25,6 @@ class CallLogList extends StatelessWidget {
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
-                ),
-                trailing: IconButton(
-                  onPressed: () async {
-                    Telephony telephony = Telephony.instance;
-                    final message = await LocalHelper.getMessageTemplate();
-                    if (callLog.number != null && message.isNotEmpty) {
-                      telephony.sendSms(
-                        to: callLog.number!,
-                        message: message,
-                        isMultipart: true,
-                        statusListener: (status) {
-                          debugPrint('SMS status: $status');
-                        },
-                      );
-                    }
-                  },
-                  icon: Icon(Icons.message, color: Colors.blue),
                 ),
               );
             },
