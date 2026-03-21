@@ -7,7 +7,7 @@ import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:send_sms/constants/app_constants.dart';
+// import 'package:send_sms/constants/app_constants.dart';
 import 'package:send_sms/featres/home/bloc/home_event.dart';
 import 'package:send_sms/featres/home/bloc/home_state.dart';
 
