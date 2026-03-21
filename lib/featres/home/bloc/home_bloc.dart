@@ -38,9 +38,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<bool> _requestPermisions() async {
-    final status = await [Permission.photos, Permission.phone].request();
+    final status = await [
+      Permission.photos,
+      Permission.phone,
+      Permission.notification,
+    ].request();
     return status[Permission.photos]!.isGranted &&
-        status[Permission.phone]!.isGranted;
+        status[Permission.phone]!.isGranted &&
+        status[Permission.notification]!.isGranted;
   }
 
   Future<void> _getCallLogs(
@@ -82,27 +87,27 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           add(InsertNewCallLogEvent(phoneNumber: phoneNumber));
           final screenshotFile = await _getLastScreenshot();
           if (screenshotFile != null) {
-            final candidates = await gemini.prompt(
-              parts: [
-                Part.text(textPrompt),
-                Part.bytes(screenshotFile.readAsBytesSync()),
-              ],
-            );
-            if (candidates != null) {
-              final content = candidates.content;
-              TextPart? textPart = content?.parts?.first as TextPart?;
-              final messageTemplate = await LocalHelper.getMessageTemplate();
-              if (textPart != null && messageTemplate.isNotEmpty) {
-                telephony.sendSms(
-                  to: phoneNumber,
-                  message: '${textPart.text}\n$messageTemplate',
-                  isMultipart: true,
-                  statusListener: (status) {
-                    debugPrint('SMS status: $status');
-                  },
-                );
-              }
-            }
+            // final candidates = await gemini.prompt(
+            //   parts: [
+            //     Part.text(textPrompt),
+            //     Part.bytes(screenshotFile.readAsBytesSync()),
+            //   ],
+            // );
+            // if (candidates != null) {
+            //   final content = candidates.content;
+            //   TextPart? textPart = content?.parts?.first as TextPart?;
+            //   final messageTemplate = await LocalHelper.getMessageTemplate();
+            //   if (textPart != null && messageTemplate.isNotEmpty) {
+            //     telephony.sendSms(
+            //       to: phoneNumber,
+            //       message: '${textPart.text}\n$messageTemplate',
+            //       isMultipart: true,
+            //       statusListener: (status) {
+            //         debugPrint('SMS status: $status');
+            //       },
+            //     );
+            //   }
+            // }
           }
         }
       }

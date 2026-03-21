@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:send_sms/constants/app_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,6 +19,7 @@ class SettingsPage extends StatelessWidget {
       body: Column(
         children: [
           ListTile(
+            leading: Icon(Icons.message_outlined, color: Colors.blue),
             title: Text(
               defaultSentMessageApp,
               style: TextStyle(fontSize: 15.0, color: Colors.black),
@@ -28,6 +30,16 @@ class SettingsPage extends StatelessWidget {
                 // Handle switch state change
               },
             ),
+          ),
+          ListTile(
+            leading: Icon(Icons.widgets, color: Colors.green),
+            title: Text(
+              addHomeScreenWidget,
+              style: TextStyle(fontSize: 15.0, color: Colors.black),
+            ),
+            onTap: () {
+              HomeWidget.requestPinWidget(androidName: 'CallLogsAppWidget');
+            },
           ),
           ListTile(
             onTap: () async {

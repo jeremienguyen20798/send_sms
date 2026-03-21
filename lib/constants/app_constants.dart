@@ -13,3 +13,4 @@ const privacyPolicyTitle = 'Chính sách bảo mật';
 const privacyPolicyLink = 'https://www.termsfeed.com/live/b83cee04-6063-48a4-adb8-1ee7a0f5a5a2';
 const appVersion = 'Phiên bản ứng dụng';
 const defaultSentMessageApp = 'Thiết lập ứng dụng gửi tin nhắn mặc định';
+const addHomeScreenWidget = 'Thêm vào màn hình chính';

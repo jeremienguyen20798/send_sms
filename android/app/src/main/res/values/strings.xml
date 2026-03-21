@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appwidget_title">Lịch sử cuộc gọi</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="call_logs">Cuộc gọi</string>
+    <string name="message_logs">Tin nhắn</string>
+    <string name="default_phone_number">0392634700</string>
+</resources>
