@@ -6,4 +6,5 @@
     <string name="call_logs">Cuộc gọi</string>
     <string name="message_logs">Tin nhắn</string>
     <string name="default_phone_number">0392634700</string>
+    <string name="send_message">Gửi tin nhắn</string>
 </resources>

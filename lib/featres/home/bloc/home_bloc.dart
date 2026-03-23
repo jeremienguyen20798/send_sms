@@ -41,11 +41,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final status = await [
       Permission.photos,
       Permission.phone,
-      Permission.notification,
+      // Permission.notification,
     ].request();
     return status[Permission.photos]!.isGranted &&
-        status[Permission.phone]!.isGranted &&
-        status[Permission.notification]!.isGranted;
+        status[Permission.phone]!.isGranted 
+        // &&
+        // status[Permission.notification]!.isGranted
+        ;
   }
 
   Future<void> _getCallLogs(

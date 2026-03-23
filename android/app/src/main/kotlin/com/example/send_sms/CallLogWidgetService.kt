@@ -3,6 +3,7 @@ package com.example.send_sms
 import android.content.Context
 import android.content.Intent
 import android.provider.CallLog
+import android.widget.Button
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 
@@ -41,8 +42,8 @@ class CallLogRemoteViewsFactory(private val context: Context) : RemoteViewsServi
     override fun getCount(): Int = callLogs.size
 
     override fun getViewAt(position: Int): RemoteViews {
-        val views = RemoteViews(context.packageName, android.R.layout.simple_list_item_1)
-        views.setTextViewText(android.R.id.text1, callLogs[position])
+        val views = RemoteViews(context.packageName, R.layout.item_call_log)
+        views.setTextViewText(R.id.phone_number_textview, callLogs[position])
         return views
     }
 
