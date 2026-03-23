@@ -1,5 +1,4 @@
 import 'package:call_log/call_log.dart';
-import 'package:floating/floating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:send_sms/constants/app_constants.dart';
@@ -8,7 +7,6 @@ import 'package:send_sms/featres/home/bloc/home_event.dart';
 import 'package:send_sms/featres/home/bloc/home_state.dart';
 import 'package:send_sms/featres/settings/view/settings_page.dart';
 import 'package:send_sms/shared/widgets/call_log_list.dart';
-import 'package:send_sms/shared/widgets/pip_call_log_list.dart';
 import 'package:send_sms/utils/app_formatter.dart';
 import 'package:send_sms/utils/app_utils.dart';
 
@@ -71,17 +69,10 @@ class HomeView extends StatelessWidget {
             final newCallLog = state.callLogEntry;
             callLogs.insert(0, newCallLog);
           }
-          return PiPSwitcher(
-            childWhenEnabled: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [Expanded(child: PipCallLogList(callLogs: callLogs))],
-            ),
-            childWhenDisabled: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [Expanded(child: CallLogList(callLogs: callLogs))],
-            ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [Expanded(child: CallLogList(callLogs: callLogs))],
           );
         },
         listener: (context, state) {
