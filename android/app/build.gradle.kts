@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.send_sms"
+    namespace = "com.jeremienguyen.send_sms"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -27,7 +27,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.send_sms"
+        applicationId = "com.jeremienguyen.send_sms"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -43,6 +43,8 @@ android {
 dependencies {
     implementation("androidx.glance:glance-appwidget:1.1.1")
     implementation("androidx.recyclerview:recyclerview:1.4.0")
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
 

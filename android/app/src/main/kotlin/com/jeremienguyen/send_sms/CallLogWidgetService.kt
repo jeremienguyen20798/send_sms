@@ -1,4 +1,4 @@
-package com.example.send_sms
+package com.jeremienguyen.send_sms
 
 import android.content.Context
 import android.content.Intent

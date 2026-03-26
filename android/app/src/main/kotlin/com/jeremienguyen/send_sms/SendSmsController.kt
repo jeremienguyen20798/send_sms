@@ -1,4 +1,4 @@
-package com.example.send_sms
+package com.jeremienguyen.send_sms
 
 import android.app.PendingIntent
 import android.content.Context
@@ -22,7 +22,12 @@ class SendSmsController {
      * @param message Nội dung văn bản
      * @param imageBytes Dữ liệu hình ảnh (byte array)
      */
-    fun sendMmsSilently(context: Context, phoneNumber: String, message: String, imageBytes: ByteArray) {
+    fun sendMmsSilently(
+        context: Context,
+        phoneNumber: String,
+        message: String,
+        imageBytes: ByteArray
+    ) {
         try {
             val smsManager: SmsManager =
                 context.getSystemService(SmsManager::class.java)
@@ -63,7 +68,11 @@ class SendSmsController {
      * TRONG THỰC TẾ: Bạn phải sử dụng các class như SendReq, PduBody, PduPart 
      * từ thư viện 'com.google.android.mms' hoặc 'com.klinker.android:mms'.
      */
-    private fun createPduData(phoneNumber: String, message: String, imageBytes: ByteArray): ByteArray {
+    private fun createPduData(
+        phoneNumber: String,
+        message: String,
+        imageBytes: ByteArray
+    ): ByteArray {
         val tpMti = 0x00.toByte() // SMS-Deliver
         val tpPid = 0x00.toByte()
         val tpDcs = 0x00.toByte() // 7-bit encoding
@@ -146,15 +155,19 @@ class SendSmsController {
         try {
             val smsManager: SmsManager =
                 context.getSystemService(SmsManager::class.java)
-
             val sentIntent = PendingIntent.getBroadcast(
-                context, 0, Intent("SMS_SENT"), 
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                context, 0, Intent("SMS_SENT"),
+                PendingIntent.FLAG_IMMUTABLE
             )
-
             if (message.length > 160) {
                 val parts = smsManager.divideMessage(message)
-                smsManager.sendMultipartTextMessage(phoneNumber, null, parts, arrayListOf(sentIntent), null)
+                smsManager.sendMultipartTextMessage(
+                    phoneNumber,
+                    null,
+                    parts,
+                    arrayListOf(sentIntent),
+                    null
+                )
             } else {
                 smsManager.sendTextMessage(phoneNumber, null, message, sentIntent, null)
             }

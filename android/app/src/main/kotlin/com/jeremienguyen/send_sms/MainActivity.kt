@@ -1,4 +1,4 @@
-package com.example.send_sms
+package com.jeremienguyen.send_sms
 
 import io.flutter.embedding.android.FlutterActivity
 
