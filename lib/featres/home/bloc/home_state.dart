@@ -20,12 +20,3 @@ class GetCallLogsState extends HomeState {
   @override
   List<Object?> get props => [callLogs];
 }
-
-class InsertNewCallLogState extends HomeState {
-  final CallLogEntry callLogEntry;
-
-  InsertNewCallLogState({required this.callLogEntry});
-
-  @override
-  List<Object?> get props => [callLogEntry];
-}

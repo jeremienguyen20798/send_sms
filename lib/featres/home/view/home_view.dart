@@ -65,9 +65,6 @@ class HomeView extends StatelessWidget {
         builder: (context, state) {
           if (state is GetCallLogsState) {
             callLogs = state.callLogs;
-          } else if (state is InsertNewCallLogState) {
-            final newCallLog = state.callLogEntry;
-            callLogs.insert(0, newCallLog);
           }
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

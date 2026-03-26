@@ -9,11 +9,3 @@ class SaveMessageTemplateEvent extends HomeEvent {
 
   SaveMessageTemplateEvent({required this.template});
 }
-
-class CallStateListenEvent extends HomeEvent {}
-
-class InsertNewCallLogEvent extends HomeEvent {
-  final String phoneNumber;
-
-  InsertNewCallLogEvent({required this.phoneNumber});
-}

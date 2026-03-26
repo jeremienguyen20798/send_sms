@@ -1,4 +1,3 @@
-const apiKey = 'AIzaSyCFwaYo84aaofGS7m-2zGGzAmjxxFZr2Cs';
 const messageTemplateKey = 'message_template';
 const messageTitle = 'Mẫu tin nhắn';
 const messageHint = 'Nhập nội dung tin nhắn mẫu...';
