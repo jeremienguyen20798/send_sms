@@ -21,7 +21,15 @@ class _MessageTemplateDialogState extends State<MessageTemplateDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(messageTitle),
+      titlePadding: EdgeInsets.only(top: 12.0, left: 24.0, right: 24.0),
+      title: ListTile(
+        title: Text(
+          messageTitle,
+          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+        ),
+        contentPadding: EdgeInsets.zero,
+        trailing: IconButton(onPressed: () {}, icon: Icon(Icons.add_to_photos)),
+      ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       insetPadding: EdgeInsets.symmetric(horizontal: 16.0),
       content: SizedBox(
