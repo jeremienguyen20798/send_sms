@@ -5,7 +5,7 @@ import 'package:send_sms/featres/settings/bloc/settings_event.dart';
 import 'package:send_sms/featres/settings/bloc/settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  static const platform = MethodChannel("com.example.send_sms/SendSMS");
+  static const platform = MethodChannel("com.jeremienguyen.send_sms/AutoSendSMS");
 
   SettingsBloc() : super(InitialSettingsState()) {
     on<RequestDefaultSMSAppEvent>(_requestDefaultSMSApp);

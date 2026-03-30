@@ -49,7 +49,7 @@ class _SettingsViewState extends State<SettingsView> {
           ListTile(
             leading: Icon(Icons.widgets, color: Colors.green),
             title: Text(
-              "addHomeScreenWidget",
+              addHomeScreenWidget,
               style: TextStyle(fontSize: 15.0, color: Colors.black),
             ),
             onTap: () {
